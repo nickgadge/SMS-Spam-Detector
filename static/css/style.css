@@ -1,0 +1,93 @@
+.message-card {
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    background-color: #ffffff;
+    overflow: hidden;
+    position: relative;
+}
+
+.message-card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.message-card.spam {
+    border-left: 4px solid #e63946;
+    background-color: #fff9f9;
+    background-image: linear-gradient(to right, #fff9f9 98%, #e63946 100%);
+}
+
+.message-card.ham {
+    border-left: 4px solid #2a9d8f;
+    background-color: #f8fffe;
+    background-image: linear-gradient(to right, #f8fffe 98%, #2a9d8f 100%);
+}
+
+.message-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: currentColor;
+    opacity: 0.1;
+}
+
+.message-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: #6c757d;
+    font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.message-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.message-meta .badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 100px;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #495057;
+    font-weight: 500;
+}
+
+/* Optional premium touch - animated status indicator */
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.message-card.spam::after,
+.message-card.ham::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: -8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.message-card.spam::after {
+    background: #e63946;
+    box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.2);
+}
+
+.message-card.ham::after {
+    background: #2a9d8f;
+    box-shadow: 0 0 0 4px rgba(42, 157, 143, 0.2);
+}
